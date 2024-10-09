@@ -16,8 +16,7 @@ count_matrix = pickle.load(open('count_matrix.pkl', 'rb'))
 # Recommendation function
 def recommend_movies_knn1(title, df=df, model=knn_model):
     idx = df[df['id'] == title].index[0]
-    # distances, indices = model.kneighbors(count_matrix[idx], n_neighbors=13)
-    distances, indices = model.kneighbors(count_matrix[idx], n_neighbors=3)
+    distances, indices = model.kneighbors(count_matrix[idx], n_neighbors=13)
 
     similar_movies_indices = indices.flatten()[1:]
     return df['id'].iloc[similar_movies_indices].tolist()
